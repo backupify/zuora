@@ -36,7 +36,7 @@ describe Zuora::Objects::Contact do
 
     context "when persisted record" do
       before :each do
-        subject.stub(:new_record? => false)
+        subject.id = 1
 
         subject.should_not be_valid
       end
