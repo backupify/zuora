@@ -33,11 +33,11 @@ end
 
 # Deal with ActiveModel::Lint Minitest integration; define asserts to use a RSpec style
 def assert(thing_to_be_asserted, message = nil)
-  thing_to_be_asserted.should be_true
+  thing_to_be_asserted.should be true
 end
 
 def assert_kind_of(klass, obj)
-  obj.is_a?(klass).should be_true
+  obj.is_a?(klass).should be true
 end
 
 def assert_equal(expected, actual, message = nil)
