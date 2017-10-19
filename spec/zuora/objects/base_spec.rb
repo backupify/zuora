@@ -9,7 +9,7 @@ class SomeExampleConnector
 end
 
 describe Zuora::Objects::Base do
-  describe :connector do
+  describe "connector" do
     it "uses SoapConnector by default" do
       SomeExampleObject.connector.should be_a Zuora::SoapConnector
     end
@@ -22,10 +22,10 @@ describe Zuora::Objects::Base do
     end
   end
 
-  describe :initializer do
+  describe "initializer" do
     it "allows to overwrite default values" do
-      Zuora::Objects::Invoice.new.includes_usage.should be_true
-      Zuora::Objects::Invoice.new(:includes_usage => false).includes_usage.should be_false
+      Zuora::Objects::Invoice.new.includes_usage.should be true
+      Zuora::Objects::Invoice.new(:includes_usage => false).includes_usage.should be false
     end
 
     it "assigns attributes from passed in hash" do
