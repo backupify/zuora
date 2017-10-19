@@ -11,7 +11,7 @@ describe Zuora::Objects::Contact do
   it "should support dirty associations on belongs_to" do
     contact = Zuora::Objects::Contact.new
     contact.should_not be_changed
-    contact.account = mock(Zuora::Objects::Account, :id => 42)
+    contact.account = double(Zuora::Objects::Account, :id => 42)
     contact.changes.should == {'account_id' => [nil, 42]}
   end
 

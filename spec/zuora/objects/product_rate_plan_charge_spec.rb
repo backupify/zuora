@@ -8,7 +8,7 @@ describe Zuora::Objects::ProductRatePlanCharge do
     end
 
     it "should allow adding objects to the association" do
-      obj = mock('Example')
+      obj = double('Example')
       subject.product_rate_plan_charge_tiers << obj
       subject.product_rate_plan_charge_tiers.should == [obj]
     end

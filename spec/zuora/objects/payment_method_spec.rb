@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Zuora::Objects::PaymentMethod do
   before :each do
-    @account = mock(Zuora::Objects::Account, :id => 1)
+    @account = double(Zuora::Objects::Account, :id => 1)
   end
 
   describe "Type helpers" do
