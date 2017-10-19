@@ -68,6 +68,10 @@ module Zuora
             end
             generate_complex_objects(a, :create)
           end
+          # Implementation adapted from jmoline/zuora 54cdde65a5de761162cbc6bbdd930082349582fb
+          r.__send__(zns, :AmendOptions) do |ao|
+            @model.generate_amend_options(ao)
+          end unless @model.amend_options.blank?
         end
       end
     end
@@ -138,7 +142,7 @@ module Zuora
                   td.__send__(ons, k.to_s.zuora_camelize.to_sym, v) unless v.nil?
                 end
               when :update
-                object.to_hash.reject{ |k,v| object.read_only_attributes.include?(k) ||
+                object.to_hash.reject{|k,v| object.read_only_attributes.include?(k) ||
                                             object.restrain_attributes.include?(k) }.each do |k,v|
                   td.__send__(ons, k.to_s.zuora_camelize.to_sym, v) unless v.nil?
                 end
