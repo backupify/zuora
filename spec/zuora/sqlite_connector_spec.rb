@@ -131,7 +131,7 @@ describe Zuora::SqliteConnector do
 
     describe "factories" do
       before :each do
-        @product = Factory(:product)
+        @product = FactoryGirl.create(:product)
       end
 
       it "should exists" do
