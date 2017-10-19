@@ -20,7 +20,7 @@ namespace :spec do
 end
 
 task = ARGV.first
-if task && ENV['FORCE'] != 'true' 
+if task && ENV['FORCE'] != 'true'
   if task == 'spec:integrations'
     puts <<-END.gsub(/^[ ]+/, '')
       ****************************************************************************

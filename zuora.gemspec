@@ -34,7 +34,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency(%q<factory_girl>, ["~> 2.6.4"])
   s.add_development_dependency(%q<appraisal>, ["~> 0.4.1"])
   s.add_development_dependency(%q<sqlite3>, ["~> 1.3.0"])
-
-  s.add_development_dependency('byebug')
-  s.add_development_dependency('test-unit')
+  s.add_development_dependency(%q<minitest>)
 end

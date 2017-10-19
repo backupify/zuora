@@ -7,4 +7,3 @@ doc
 .ruby-gemset
 gemfiles/*.gemfile.lock
 zuora.log
-Gemfile.lock
