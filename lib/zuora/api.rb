@@ -38,7 +38,7 @@ module Zuora
     # @return [Hash]
     attr_accessor :options
 
-    WSDL = File.expand_path('../../../wsdl/zuora.a.78.0.wsdl', __FILE__)
+    WSDL = File.expand_path('../../../wsdl/production/zuora.a.38.0.wsdl', __FILE__)
     SOAP_VERSION = 2
     SANDBOX_ENDPOINT = 'https://apisandbox.zuora.com/apps/services/a/78.0'
 

@@ -7,3 +7,4 @@ doc
 .ruby-gemset
 gemfiles/*.gemfile.lock
 zuora.log
+.DS_Store
