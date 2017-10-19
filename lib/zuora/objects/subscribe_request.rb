@@ -7,6 +7,7 @@ module Zuora::Objects
     attr_accessor :sold_to_contact
 
     attr_accessor :product_rate_plans
+    attr_accessor :product_rate_plan_id
 
     store_accessors :subscribe_options
     store_accessors :preview_options
@@ -16,7 +17,7 @@ module Zuora::Objects
       request.must_have_usable(:payment_method)
       request.must_have_usable(:bill_to_contact)
 
-      request.must_have_usable(:product_rate_plans)
+      request.must_have_usable(:product_rate_plans) unless request.product_rate_plan_id
       request.must_have_new(:subscription)
     end
 
@@ -74,10 +75,18 @@ module Zuora::Objects
               generate_subscription(sub)
             end
 
-            product_rate_plans.each do |product_rate_plan|
+            if product_rate_plans.compact.empty? && product_rate_plan_id.present?
               sd.__send__(zns, :RatePlanData) do |rpd|
                 rpd.__send__(zns, :RatePlan) do |rp|
-                  rp.__send__(ons, :ProductRatePlanId, product_rate_plan.id)
+                  rp.__send__(ons, :ProductRatePlanId, product_rate_plan_id)
+                end
+              end
+            else
+              product_rate_plans.each do |product_rate_plan|
+                sd.__send__(zns, :RatePlanData) do |rpd|
+                  rpd.__send__(zns, :RatePlan) do |rp|
+                    rp.__send__(ons, :ProductRatePlanId, product_rate_plan.id)
+                  end
                 end
               end
             end
