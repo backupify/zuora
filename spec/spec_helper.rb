@@ -10,8 +10,8 @@ Dir["#{File.dirname(__FILE__)}/../spec/factories/*.rb"].sort.each { |ext| requir
 
 Zuora.configure(:log => false)
 
-RSpec.configure do |c|
-  c.include Namespace
+RSpec.configure do |config|
+  config.include Namespace
 end
 
 def generate_key
@@ -38,5 +38,9 @@ end
 
 def assert_kind_of(klass, obj)
   obj.is_a?(klass).should be_true
+end
+
+def assert_equal(expected, actual, message = nil)
+  expected.should eq(actual), message
 end
 
