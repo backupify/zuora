@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency(%q<guard-rspec>, ["~> 0.6.0"])
   s.add_development_dependency(%q<artifice>, ["~> 0.6.0"])
   s.add_development_dependency(%q<yard>, ["~> 0.7.5"])
-  s.add_development_dependency(%q<rspec>, ["~> 2.8.0"])
+  s.add_development_dependency(%q<rspec>, ["~> 3.5.0"])
   s.add_development_dependency(%q<redcarpet>, ["~> 2.1.0"])
   s.add_development_dependency(%q<factory_girl>, ["~> 4.4.0"])
   s.add_development_dependency(%q<appraisal>, ["~> 0.4.1"])
