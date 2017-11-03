@@ -75,7 +75,7 @@ module Zuora::Objects
               generate_subscription(sub)
             end
 
-            if product_rate_plans.compact.empty? && product_rate_plan_id.present?
+            if (product_rate_plans.nil? || product_rate_plans.compact.empty?) && product_rate_plan_id.present?
               sd.__send__(zns, :RatePlanData) do |rpd|
                 rpd.__send__(zns, :RatePlan) do |rp|
                   rp.__send__(ons, :ProductRatePlanId, product_rate_plan_id)
