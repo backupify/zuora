@@ -49,7 +49,7 @@ module Zuora
     # Is this an authenticated session?
     # @return [Boolean]
     def authenticated?
-      self.session.try(:active?)
+      self.session.try(:active?) && client.globals.try(:[], :soap_header).try(:[], "env:SessionHeader").try(:present?)
     end
 
     # Change client to use sandbox url
