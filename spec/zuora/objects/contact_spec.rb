@@ -11,7 +11,7 @@ describe Zuora::Objects::Contact do
   it "should support dirty associations on belongs_to" do
     contact = Zuora::Objects::Contact.new
     contact.should_not be_changed
-    contact.account = mock(Zuora::Objects::Account, :id => 42)
+    contact.account = double(Zuora::Objects::Account, :id => 42)
     contact.changes.should == {'account_id' => [nil, 42]}
   end
 
@@ -35,11 +35,14 @@ describe Zuora::Objects::Contact do
     end
 
     context "when persisted record" do
+      before :each do
+        subject.id = 1
+
+        subject.should_not be_valid
+      end
+
       it "requires account_id" do
-        subject.stub(:new_record?, false) do
-          subject.should_not be_valid
-          subject.errors[:account_id].should include("can't be blank")
-        end
+        subject.errors[:account_id].should include("can't be blank")
       end
     end
   end

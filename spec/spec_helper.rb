@@ -8,13 +8,16 @@ require 'minitest/autorun'
 Dir["#{File.dirname(__FILE__)}/../spec/support/**/*.rb"].sort.each { |ext| require ext }
 Dir["#{File.dirname(__FILE__)}/../spec/factories/*.rb"].sort.each { |ext| require ext }
 
-RSpec.configure do |c|
-  #c.fail_fast = true
+Zuora.configure(:log => false)
+
+RSpec.configure do |config|
+  config.include Namespace
 end
 
 def generate_key
   Digest::MD5.hexdigest("#{Time.now}-#{rand}")
 end
+
 
 def zuora_namespace(uri)
   Zuora::Api.instance.client.soap.namespace_by_uri(uri)
@@ -30,10 +33,14 @@ end
 
 # Deal with ActiveModel::Lint Minitest integration; define asserts to use a RSpec style
 def assert(thing_to_be_asserted, message = nil)
-  thing_to_be_asserted.should be_true
+  thing_to_be_asserted.should be true
 end
 
 def assert_kind_of(klass, obj)
-  obj.is_a?(klass).should be_true
+  obj.is_a?(klass).should be true
+end
+
+def assert_equal(expected, actual, message = nil)
+  expected.should eq(actual), message
 end
 

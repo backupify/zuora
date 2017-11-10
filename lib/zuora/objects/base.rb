@@ -55,7 +55,7 @@ module Zuora::Objects
     end
 
     def self.namespace(uri)
-      Zuora::Api.instance.client.soap.namespace_by_uri(uri)
+      Zuora::Api.instance.client.operation(:query).build.send(:namespace_by_uri, uri)
     end
 
     def self.zns
@@ -72,6 +72,16 @@ module Zuora::Objects
 
     def ons
       self.class.ons
+    end
+
+    # retrieve all of the records
+    def self.all
+      keys = (attributes - unselectable_attributes).map(&:to_s).map(&:zuora_camelize)
+      sql = "select #{keys.join(', ')} from #{remote_name}"
+
+      result = self.connector.query(sql)
+
+      generate(result.to_hash, :query_response)
     end
 
     # locate objects using a custom where clause, currently arel
@@ -101,6 +111,11 @@ module Zuora::Objects
       sql = "select #{keys.join(', ')} from #{remote_name} where #{where_clause}"
       result = self.connector.query(sql)
 
+      generate(result.to_hash, :query_response)
+    end
+
+    def self.query(query_string)
+      result = self.connector.query(query_string)
       generate(result.to_hash, :query_response)
     end
 
@@ -189,7 +204,5 @@ module Zuora::Objects
         return false
       end
     end
-
   end
 end
-
