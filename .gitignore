@@ -8,3 +8,4 @@ doc
 gemfiles/*.gemfile.lock
 zuora.log
 .DS_Store
+Dockerfile
